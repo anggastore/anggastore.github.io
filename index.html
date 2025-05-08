@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <title>Joki Mobile Legends - VVIPSTORE</title>
   <style>
     /* Landing Page Styles */
@@ -17,72 +17,82 @@
       left: 0;
       width: 100%;
       height: 100%;
-      transition: opacity 0.5s ease;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .landing-page .overlay {
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 30px 15px;
+      padding: 20px 15px 80px; /* Ditambah padding bottom untuk ruang tombol */
       text-align: center;
       min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
     }
     .landing-page .title {
-      font-size: 36px;
+      font-size: 28px;
       font-weight: bold;
-      margin-top: 20px;
+      margin-top: 15px;
+      margin-bottom: 10px;
     }
     .landing-page .subtitle {
-      font-size: 18px;
-      margin-bottom: 30px;
+      font-size: 16px;
+      margin-bottom: 20px;
     }
     .landing-page .paket-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
-      margin-top: 30px;
+      margin: 20px 0;
     }
     .landing-page .paket-item {
       background-color: white;
       color: black;
-      padding: 12px 18px;
-      border-radius: 10px;
-      font-size: 16px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 10px;
-      width: calc(33% - 20px);
-      min-width: 220px;
+      gap: 8px;
+      width: calc(50% - 15px);
+      min-width: 0;
+      box-sizing: border-box;
     }
     .landing-page .paket-item img {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
     }
     .landing-page .footer {
       font-weight: bold;
-      margin-top: 40px;
-      font-size: 16px;
+      margin-top: 20px;
+      font-size: 14px;
+      margin-bottom: 15px;
     }
     .landing-page .kontak {
       background-color: #ffcc00;
       color: #000;
-      padding: 10px;
-      border-radius: 10px;
+      padding: 8px;
+      border-radius: 8px;
       display: inline-block;
       margin-top: 10px;
       font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
     .landing-page .kontak a {
       display: inline-block;
       margin-top: 10px;
       background-color: #25D366;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
       cursor: pointer;
+      font-size: 14px;
     }
 
     /* Form Page Styles */
@@ -93,37 +103,28 @@
       background: linear-gradient(135deg, #150050, #35004f);
       color: #eee;
       min-height: 100vh;
-      padding: 10px;
+      padding: 15px 10px 80px; /* Ditambah padding bottom */
+      box-sizing: border-box;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    .form-page * { box-sizing: border-box; }
     .form-page main {
       background: #1a0035;
       max-width: 350px;
       width: 100%;
       border-radius: 15px;
-      padding: 25px 20px 40px;
+      padding: 20px 15px 30px;
       box-shadow: 0 0 15px rgba(255, 37, 102, 0.7);
-      position: relative;
       margin: 0 auto;
+      box-sizing: border-box;
     }
     .form-page h1 {
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: #ff2d55;
       text-shadow: 0 0 8px #ff2d55bb;
-    }
-    .form-page h2 {
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-top: 20px;
-      margin-bottom: 8px;
-      color: #ff5e92;
-    }
-    .form-page form {
-      display: flex;
-      flex-direction: column;
     }
     .form-page label {
       margin-bottom: 5px;
@@ -135,15 +136,12 @@
       padding: 8px 12px;
       border: none;
       border-radius: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       font-size: 1rem;
       background: #2a005e;
       color: #fff;
-    }
-    .form-page input[type="text"]:focus, .form-page input[type="tel"]:focus, .form-page select:focus {
-      outline: none;
-      background: #3a007f;
-      box-shadow: 0 0 8px #ff2d55;
+      width: 100%;
+      box-sizing: border-box;
     }
     .form-page button {
       background: #ff2d55;
@@ -152,65 +150,17 @@
       border: none;
       border-radius: 12px;
       padding: 12px 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
       margin-top: 10px;
       box-shadow: 0 0 12px #ff2d55cc;
-    }
-    .form-page button:hover {
-      background: #e50046;
-    }
-    .form-page .summary {
-      background: #2a005e;
-      border-radius: 12px;
-      padding: 12px 15px;
-      font-size: 1rem;
-      color: #ffaddf;
-      min-height: 60px;
-      margin-top: 10px;
-      box-shadow: inset 0 0 10px #ff2d55;
-    }
-    .form-page .confirmation {
-      margin-top: 15px;
-      padding: 12px 15px;
-      background: #00ff99;
-      color: #003300;
-      border-radius: 10px;
-      font-weight: 700;
-      text-align: center;
-      box-shadow: 0 0 8px #00ffaaaa;
-    }
-    .form-page .owner-contact {
-      margin-top: 25px;
-      font-size: 1rem;
-      color: #ff6fa3;
-      text-align: center;
-      font-weight: 600;
-      user-select: text;
-      text-shadow: 0 0 6px #ff2d55aa;
-    }
-    .form-page .owner-contact a {
-      color: #ff2d55;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .form-page .owner-contact a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 400px) {
-      .form-page main {
-        max-width: 100%;
-        border-radius: 0;
-        height: 100vh;
-        padding: 20px 15px 45px;
-        box-shadow: none;
-      }
+      width: 100%;
     }
 
     /* Back button */
     .back-button {
       position: fixed;
-      bottom: 20px;
+      bottom: 15px;
       left: 50%;
       transform: translateX(-50%);
       background: #ff2d55;
@@ -221,15 +171,33 @@
       cursor: pointer;
       z-index: 100;
       display: none;
+      width: 90%;
+      max-width: 350px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    /* Audio Element (hidden) */
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 400px) {
+      .landing-page .paket-item {
+        width: 100%;
+      }
+      .form-page main {
+        border-radius: 0;
+        padding: 15px 10px 25px;
+      }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Audio Element (hidden) -->
-  <audio id="bgMusic" loop style="display: none;">
+  <!-- Audio Element -->
+  <audio id="bgMusic" loop>
     <source src="https://files.catbox.moe/3k6454.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <!-- Landing Page -->
@@ -318,8 +286,6 @@
 
         <button type="submit">Kirim Pesanan</button>
       </form>
-
-      <div id="confirmationMsg" class="confirmation" style="display:none;"></div>
     </main>
   </div>
 
@@ -333,10 +299,8 @@
     const backButton = document.getElementById('backButton');
     const form = document.getElementById('jokiForm');
     const summary = document.getElementById('orderSummary');
-    const confirmation = document.getElementById('confirmationMsg');
-    const contactInput = form.contact;
-    const ownerWhatsApp = '6285781233116';
     const bgMusic = document.getElementById('bgMusic');
+    const ownerWhatsApp = '6285781233116';
 
     const packagePrices = {
       "Naik 1 Rank": 50000,
@@ -357,7 +321,7 @@
       formPage.style.display = 'block';
       backButton.style.display = 'block';
       
-      // Start playing music when Order Now is clicked
+      // Start playing music
       bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
     });
 
@@ -367,7 +331,7 @@
       formPage.style.display = 'none';
       backButton.style.display = 'none';
       
-      // Musik tetap bermain saat kembali ke laman depan
+      // Continue playing music
       bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
     });
 
@@ -420,12 +384,10 @@ Mohon konfirmasi dan informasi selanjutnya.`;
       window.open(waLink, '_blank');
     });
 
-    // Auto play music when page loads (with user interaction requirement)
-    document.body.addEventListener('click', function firstClick() {
-      // Try to start music on first user interaction
+    // Auto play music on first interaction
+    document.body.addEventListener('click', function initMusic() {
       bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
-      // Remove this listener after first click
-      document.body.removeEventListener('click', firstClick);
+      document.body.removeEventListener('click', initMusic);
     }, { once: true });
   </script>
 </body>
