@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joki Mobile Legends - VVIPSTORE</title>
+  <style>
+    /* Landing Page Styles */
+    .landing-page {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p3/75/2024/12/20/Kalea-MLBB-Poplineid-3255246654.jpg') no-repeat center center;
+      background-size: cover;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.5s ease;
+    }
+    .landing-page .overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px 15px;
+      text-align: center;
+      min-height: 100vh;
+    }
+    .landing-page .title {
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .landing-page .subtitle {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .landing-page .paket-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .landing-page .paket-item {
+      background-color: white;
+      color: black;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: calc(33% - 20px);
+      min-width: 220px;
+    }
+    .landing-page .paket-item img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+    .landing-page .footer {
+      font-weight: bold;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+    .landing-page .kontak {
+      background-color: #ffcc00;
+      color: #000;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .landing-page .kontak a {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Form Page Styles */
+    .form-page {
+      display: none;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #150050, #35004f);
+      color: #eee;
+      min-height: 100vh;
+      padding: 10px;
+    }
+    .form-page * { box-sizing: border-box; }
+    .form-page main {
+      background: #1a0035;
+      max-width: 350px;
+      width: 100%;
+      border-radius: 15px;
+      padding: 25px 20px 40px;
+      box-shadow: 0 0 15px rgba(255, 37, 102, 0.7);
+      position: relative;
+      margin: 0 auto;
+    }
+    .form-page h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #ff2d55;
+      text-shadow: 0 0 8px #ff2d55bb;
+    }
+    .form-page h2 {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #ff5e92;
+    }
+    .form-page form {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-page label {
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ff87b3;
+    }
+    .form-page input[type="text"], .form-page select, .form-page input[type="tel"] {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      background: #2a005e;
+      color: #fff;
+    }
+    .form-page input[type="text"]:focus, .form-page input[type="tel"]:focus, .form-page select:focus {
+      outline: none;
+      background: #3a007f;
+      box-shadow: 0 0 8px #ff2d55;
+    }
+    .form-page button {
+      background: #ff2d55;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 0 12px #ff2d55cc;
+    }
+    .form-page button:hover {
+      background: #e50046;
+    }
+    .form-page .summary {
+      background: #2a005e;
+      border-radius: 12px;
+      padding: 12px 15px;
+      font-size: 1rem;
+      color: #ffaddf;
+      min-height: 60px;
+      margin-top: 10px;
+      box-shadow: inset 0 0 10px #ff2d55;
+    }
+    .form-page .confirmation {
+      margin-top: 15px;
+      padding: 12px 15px;
+      background: #00ff99;
+      color: #003300;
+      border-radius: 10px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 0 8px #00ffaaaa;
+    }
+    .form-page .owner-contact {
+      margin-top: 25px;
+      font-size: 1rem;
+      color: #ff6fa3;
+      text-align: center;
+      font-weight: 600;
+      user-select: text;
+      text-shadow: 0 0 6px #ff2d55aa;
+    }
+    .form-page .owner-contact a {
+      color: #ff2d55;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .form-page .owner-contact a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 400px) {
+      .form-page main {
+        max-width: 100%;
+        border-radius: 0;
+        height: 100vh;
+        padding: 20px 15px 45px;
+        box-shadow: none;
+      }
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff2d55;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      z-index: 100;
+      display: none;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Audio Element (hidden) -->
+  <audio id="bgMusic" loop style="display: none;">
+    <source src="https://files.catbox.moe/3k6454.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Landing Page -->
+  <div class="landing-page" id="landingPage">
+    <div class="overlay"> 
+      <div class="title">
+        JOKI BY ANGGASTORE 
+      </div> 
+      <div class="subtitle">
+        Joki Murah, Terpercaya 
+        <br>PAKET PER 
+        <b>*</b> 
+      </div> 
+      <div class="paket-grid"> 
+        <div class="paket-item"> 
+          <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1626065457/pch6miw9slsytdswumsz.png" alt="Elite"> 1k / bintang (Elite) 
+        </div> 
+        <div class="paket-item"> 
+          <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1626065472/fxx8hdsazkzjc8dndph4.png" alt="Master"> 2k / bintang (Master) 
+        </div> 
+        <div class="paket-item"> 
+          <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1626065491/whsaoxescjjqypryfml4.png" alt="Grandmaster"> 4k / bintang (Grandmaster) 
+        </div> 
+        <div class="paket-item"> 
+          <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1626065501/pw4bvzznnygkgobxh3mf.png" alt="Epic"> 5k / bintang (Epic) 
+        </div> 
+        <div class="paket-item"> 
+          <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1626065513/s1ml5jlno7rgvrpwsicy.png" alt="Legend"> 5k / bintang (Legend) 
+        </div> 
+        <div class="paket-item"> 
+          <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1626065521/mik1nv21kpod3ovug6c8.png" alt="Mythic"> 7.5k / bintang (Mythic) 
+        </div> 
+      </div> 
+      <div class="footer">
+        JOKI AMAN, TERPERCAYA, MURAH HANYA DI ANGGASTORE 
+        <br>100% AMANAH 
+      </div> 
+      <div class="kontak">
+        WA: 0857-8123-3116 
+        <br>
+        <a id="orderNowButton" href="#">Order Now</a>
+      </div> 
+    </div> 
+  </div>
+
+  <!-- Form Page -->
+  <div class="form-page" id="formPage">
+    <main>
+      <h1>Joki Mobile Legends</h1>
+      <form id="jokiForm" autocomplete="off">
+        <label for="playerId">Player ID / Username</label>
+        <input type="text" id="playerId" name="playerId" placeholder="Masukkan ID Mobile Legends" required />
+
+        <label for="currentRank">Rank Saat Ini</label>
+        <select id="currentRank" name="currentRank" required>
+          <option value="" disabled selected>Pilih Rank Saat Ini</option>
+          <option value="Bronze">Bronze</option>
+          <option value="Silver">Silver</option>
+          <option value="Gold">Gold</option>
+          <option value="Platinum">Platinum</option>
+          <option value="Diamond">Diamond</option>
+          <option value="Master">Master</option>
+          <option value="Grandmaster">Grandmaster</option>
+          <option value="Epic">Epic</option>
+          <option value="Legend">Legend</option>
+          <option value="Mythic">Mythic</option>
+          <option value="Mythical Glory">Mythical Glory</option>
+        </select>
+
+        <label for="targetPackage">Paket Joki</label>
+        <select id="targetPackage" name="targetPackage" required>
+          <option value="" disabled selected>Pilih Paket Joki</option>
+          <option value="Naik 1 Rank">Naik 1 Rank (Rp 50.000)</option>
+          <option value="Naik 3 Rank">Naik 3 Rank (Rp 130.000)</option>
+          <option value="Naik 5 Rank">Naik 5 Rank (Rp 200.000)</option>
+          <option value="Boost Star 100">Boost Bintang 100 (Rp 250.000)</option>
+          <option value="Boost Star 200">Boost Bintang 200 (Rp 400.000)</option>
+        </select>
+
+        <label for="contact">Nomor WhatsApp Anda</label>
+        <input type="text" id="contact" name="contact" placeholder="Masukkan nomor WhatsApp Anda" required />
+
+        <div class="summary" id="orderSummary">
+          Pilih paket dan isikan data untuk melihat ringkasan harga.
+        </div>
+
+        <button type="submit">Kirim Pesanan</button>
+      </form>
+
+      <div id="confirmationMsg" class="confirmation" style="display:none;"></div>
+    </main>
+  </div>
+
+  <button class="back-button" id="backButton">Kembali ke Halaman Utama</button>
+
+  <script>
+    // DOM Elements
+    const landingPage = document.getElementById('landingPage');
+    const formPage = document.getElementById('formPage');
+    const orderNowButton = document.getElementById('orderNowButton');
+    const backButton = document.getElementById('backButton');
+    const form = document.getElementById('jokiForm');
+    const summary = document.getElementById('orderSummary');
+    const confirmation = document.getElementById('confirmationMsg');
+    const contactInput = form.contact;
+    const ownerWhatsApp = '6285781233116';
+    const bgMusic = document.getElementById('bgMusic');
+
+    const packagePrices = {
+      "Naik 1 Rank": 50000,
+      "Naik 3 Rank": 130000,
+      "Naik 5 Rank": 200000,
+      "Boost Star 100": 250000,
+      "Boost Star 200": 400000,
+    };
+
+    function formatCurrency(num) {
+      return 'Rp ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    // Show form page and hide landing page
+    orderNowButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      landingPage.style.display = 'none';
+      formPage.style.display = 'block';
+      backButton.style.display = 'block';
+      
+      // Start playing music when Order Now is clicked
+      bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+    });
+
+    // Show landing page and hide form page
+    backButton.addEventListener('click', function() {
+      landingPage.style.display = 'block';
+      formPage.style.display = 'none';
+      backButton.style.display = 'none';
+      
+      // Musik tetap bermain saat kembali ke laman depan
+      bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+    });
+
+    // Form functionality
+    function updateSummary() {
+      const id = form.playerId.value.trim();
+      const rank = form.currentRank.value;
+      const paket = form.targetPackage.value;
+      const kontak = form.contact.value.trim();
+
+      if (!id || !rank || !paket || !kontak) {
+        summary.innerHTML = 'Pilih paket dan isikan data untuk melihat ringkasan harga.';
+        return;
+      }
+
+      const harga = packagePrices[paket];
+      summary.innerHTML = `
+        <strong>Ringkasan Pesanan:</strong><br>
+        ID: ${id}<br>
+        Rank: ${rank}<br>
+        Paket: ${paket}<br>
+        Harga: ${formatCurrency(harga)}
+      `;
+    }
+
+    form.addEventListener('input', updateSummary);
+    form.addEventListener('change', updateSummary);
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const id = form.playerId.value.trim();
+      const rank = form.currentRank.value;
+      const paket = form.targetPackage.value;
+      const kontak = form.contact.value.trim();
+      const harga = packagePrices[paket];
+
+      const pesan = 
+`Halo Admin, saya ingin joki Mobile Legends:
+
+Player ID / Username: ${id}
+Rank Saat Ini: ${rank}
+Paket Joki: ${paket}
+Nomor WA Saya: ${kontak}
+Harga: ${formatCurrency(harga)}
+
+Mohon konfirmasi dan informasi selanjutnya.`;
+
+      const waLink = `https://wa.me/${ownerWhatsApp}?text=${encodeURIComponent(pesan)}`;
+      window.open(waLink, '_blank');
+    });
+
+    // Auto play music when page loads (with user interaction requirement)
+    document.body.addEventListener('click', function firstClick() {
+      // Try to start music on first user interaction
+      bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+      // Remove this listener after first click
+      document.body.removeEventListener('click', firstClick);
+    }, { once: true });
+  </script>
+</body>
+</html>
