@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hanifa Laundry - Firebase Kasir</title>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, select, button { margin: 5px; padding: 5px; }
+  </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAi9G44WIIluagcBWq6D5AdphSRiRF5B9E",
+      authDomain: "laundryapp-87cb5.firebaseapp.com",
+      projectId: "laundryapp-87cb5",
+      storageBucket: "laundryapp-87cb5.firebasestorage.app",
+      messagingSenderId: "260622327214",
+      appId: "1:260622327214:web:ac14068843eb6756a9fc3f",
+      measurementId: "G-BRHJD4NY1N"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Fungsi simpan data pelanggan
+    window.simpanData = async function () {
+      const nama = document.getElementById("nama").value;
+      const layanan = document.getElementById("layanan").value;
+      const harga = parseInt(document.getElementById("harga").value);
+      const status = document.getElementById("status").value;
+
+      await addDoc(collection(db, "transaksi"), {
+        nama, layanan, harga, status,
+        tanggalMasuk: new Date().toISOString().split('T')[0],
+        waktu: serverTimestamp()
+      });
+
+      alert("Data disimpan!");
+      location.reload();
+    };
+
+    // Fungsi tampilkan data
+    const snapshot = await getDocs(collection(db, "transaksi"));
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      const baris = `<tr>
+        <td>${d.nama}</td>
+        <td>${d.layanan}</td>
+        <td>Rp${d.harga}</td>
+        <td>${d.status}</td>
+        <td>${d.tanggalMasuk}</td>
+      </tr>`;
+      document.getElementById("riwayat").innerHTML += baris;
+    });
+
+  </script>
+</head>
+<body>
+  <h2>Hanifa Laundry - Kasir Firebase</h2>
+
+  <h3>Input Transaksi</h3>
+  <input type="text" id="nama" placeholder="Nama Pelanggan" required>
+  <select id="layanan">
+    <option value="Cuci Lipat">Cuci Lipat</option>
+    <option value="Cuci Setrika">Cuci Setrika</option>
+    <option value="Cuci Karpet">Cuci Karpet</option>
+  </select>
+  <input type="number" id="harga" placeholder="Harga (Rp)">
+  <select id="status">
+    <option value="Belum Bayar">Belum Bayar</option>
+    <option value="Sudah Bayar">Sudah Bayar</option>
+  </select>
+  <button onclick="simpanData()">Simpan</button>
+
+  <h3>Riwayat Transaksi</h3>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Nama</th><th>Layanan</th><th>Harga</th><th>Status</th><th>Tanggal</th>
+      </tr>
+    </thead>
+    <tbody id="riwayat"></tbody>
+  </table>
+</body>
+</html>
